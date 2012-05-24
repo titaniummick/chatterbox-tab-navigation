@@ -1,8 +1,12 @@
+//INCLUDED FILES
 var ChannelWindow = require('ChannelWindow');
 var ChannelTableViewRow = require('ChannelTableViewRow');
+
+//HELPER VARIABLES
 var channelsList = ['3','5','7','9','11','pbs'];
 var dataForTab = []; 
 
+//UI STUFF
 var mainWin = Titanium.UI.createWindow({
 	left: 0,
 	zIndex: 1,
@@ -51,17 +55,21 @@ var channelSelectorBtn = Ti.UI.createButton({
 	top: 10
 });
 
+//ADDING UI TO THE PAGE
+
 channelSelectorPopupWin.add(tableViewForTab);
 nav.add(channelSelectorBtn);
 mainWin.add(nav);
 mainWin.open();
 
+//LOGIC STUFF
 for(var i=0;i<channelsList.length;i++) {
 	var curChannel = new ChannelTableViewRow(channelsList[i]);
 	dataForTab.push(curChannel);
 }
 tableViewForTab.setData(dataForTab);
 
+//EVENT LISTENERS
 var channelSelectorToggle = true;
 channelSelectorBtn.addEventListener('click',function(e){
 	if(channelSelectorToggle) {
